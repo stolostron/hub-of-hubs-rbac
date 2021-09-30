@@ -18,7 +18,7 @@ IMAGE := ${REGISTRY}/${COMPONENT}:${IMAGE_TAG}
 
 .PHONY: build-images			##builds docker image locally for running the components using docker
 build-images:
-	docker build -t ${IMAGE} --build-arg COMPONENT=${COMPONENT} -f build/Dockerfile .
+	docker build -t ${IMAGE} -f build/Dockerfile .
 
 .PHONY: push-images			##pushes the local docker image to docker registry
 push-images: build-images
