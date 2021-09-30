@@ -9,7 +9,7 @@ COPY clusters.rego clusters.rego
 COPY roles.rego roles.rego
 COPY sod.rego sod.rego
 
-RUN curl -L -o opa https://openpolicyagent.org/downloads/v0.32.1/opa_linux_amd64_static
+RUN curl -L -o opa https://openpolicyagent.org/downloads/v0.33.0/opa_linux_amd64_static
 RUN chmod 755 ./opa
 
 COPY build/scripts/user_setup /usr/local/scripts/user_setup
