@@ -8,6 +8,7 @@ ENV USER_NAME=opa
 COPY clusters.rego clusters.rego
 COPY roles.rego roles.rego
 COPY sod.rego sod.rego
+COPY opa_authorization.rego opa_authorization.rego
 
 RUN curl -L -o opa https://openpolicyagent.org/downloads/v0.33.0/opa_linux_amd64_static
 RUN chmod 755 ./opa
@@ -19,4 +20,4 @@ RUN microdnf update && \
     microdnf clean all
 
 USER ${USER_UID}
-ENTRYPOINT ["./opa", "run", "--server", "./clusters.rego", "./roles.rego", "./sod.rego", "/data/data.json", "/data/role_bindings.yaml"]
+ENTRYPOINT ["./opa", "run", "--server", "./clusters.rego", "./roles.rego", "./sod.rego", "opa_authorization.rego", "--authorization=basic"]

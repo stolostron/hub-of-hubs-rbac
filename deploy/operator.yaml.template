@@ -40,6 +40,8 @@ spec:
           image: ${REGISTRY}/${COMPONENT}:${IMAGE_TAG}
           imagePullPolicy: Always
           args:
+          - "/data/data.json"
+          - "/data/role_bindings.yaml"
           - "--tls-cert-file=/certs/tls.crt"
           - "--tls-private-key-file=/certs/tls.key"
           volumeMounts:
