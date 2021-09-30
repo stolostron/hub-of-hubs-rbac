@@ -57,6 +57,15 @@ spec:
          secret:
            secretName: hub-of-hubs-rbac-certs
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hub-of-hubs-rbac-ca-bundle
+  annotations:
+    service.beta.openshift.io/inject-cabundle: "true"
+  labels:
+    app: hub-of-hubs-rbac
+---
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
