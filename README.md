@@ -99,6 +99,13 @@ docker run -p 8181:8181 <the docker image>
     COMPONENT=$(basename $(pwd)) envsubst < deploy/operator.yaml.template | kubectl apply --kubeconfig $TOP_HUB_CONFIG -n open-cluster-management -f -
     ```
 
+### Security measures
+
+1. Network policy allows access only from open-cluster-management namespace
+1. The opa server runs in TLS mode, with certificates generated/rotated by OpenShift
+1. The opa authorization allows only GET methods, so no update of policies/data is possible through REST API
+1. The data of the policies is in a secret
+
 ### Working with Kubernetes deployment
 
 Show log:
@@ -113,6 +120,7 @@ Execute commands on the container:
 kubectl exec -it $(kubectl get pod -l name=$(basename $(pwd)) -o jsonpath='{.items..metadata.name}' -n open-cluster-management) \
 -n open-cluster-management -- curl localhost:8181/v1/data/roles/developer?pretty -H 'Content-Type: application/json'
 ```
+
 ## References
 
 * https://blog.openpolicyagent.org/write-policy-in-opa-enforce-policy-in-sql-d9d24db93bf4
