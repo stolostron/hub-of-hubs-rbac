@@ -71,7 +71,7 @@ metadata:
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: deny-all-for-opa
+  name: allow-within-namespace-for-opa
 spec:
   podSelector:
     matchLabels:
