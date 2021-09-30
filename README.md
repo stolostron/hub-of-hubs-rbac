@@ -87,10 +87,10 @@ docker run -p 8181:8181 <the docker image>
 
 1.  Edit role_bindings.yaml and specify your role bindings
 
-1.  Create a ConfigMap for RBAC data
+1.  Create a secret for RBAC data
 
     ```
-    kubectl create configmap opa-data --kubeconfig $TOP_HUB_CONFIG -n open-cluster-management --from-file=testdata/data.json --from-file=role_bindings.yaml
+    kubectl create secret generic opa-data --kubeconfig $TOP_HUB_CONFIG -n open-cluster-management --from-file=testdata/data.json --from-file=role_bindings.yaml
     ```
 
 1.  Deploy the component:

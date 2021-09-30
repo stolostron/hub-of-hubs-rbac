@@ -51,8 +51,8 @@ spec:
              name: certs
       volumes:
        - name: opa-data
-         configMap:
-           name: opa-data
+         secret:
+           secretName: opa-data
        - name: certs
          secret:
            secretName: hub-of-hubs-rbac-certs
