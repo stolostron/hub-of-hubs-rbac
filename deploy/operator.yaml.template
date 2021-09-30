@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${COMPONENT}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: ${COMPONENT}
+  template:
+    metadata:
+      labels:
+        name: ${COMPONENT}
+    spec:
+      serviceAccountName: ${COMPONENT}
+      containers:
+        - name: ${COMPONENT}
+          image: ${REGISTRY}/${COMPONENT}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          volumeMounts:
+           - readOnly: true
+             mountPath: /data
+             name: opa-data
+      volumes:
+       - name: opa-data
+         configMap:
+           name: opa-data
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ${COMPONENT}

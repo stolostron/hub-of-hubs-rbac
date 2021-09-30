@@ -1,0 +1,28 @@
+package rbac.clusters
+
+default allow = false # unless otherwise defined, allow is false
+
+allow {
+      user := input.user
+      userRoles := data.roleBindings[user].roles
+      some role
+      data.roles[role]
+      data.rbac.roles.inherited_role[[userRoles[_], role]]
+      role_allowed[role]
+}
+
+
+role_allowed[roleId] {
+      role := data.roles[role]
+
+      label := role.clusterHasLabel
+      input.cluster.hasLabel[label]
+
+      clusterSet := object.get(role, "inClusterSet", "default")
+      clusters := data.clusterSets[clusterSet]
+      input.cluster.oneOf[clusters]
+
+#      forbiddenClusterSet :=  object.get(odata.roles[role].notInClusterSet
+#      forbiddenClusters := array.concat([], data.clusterSets[forbiddenClusterSet])
+#      input.cluster.notOneOf[forbiddenClusters]
+}

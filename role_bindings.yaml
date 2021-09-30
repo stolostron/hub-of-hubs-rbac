@@ -1,0 +1,4 @@
+roleBindings:
+  <some user>:
+    roles:
+      - devops

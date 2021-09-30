@@ -1,0 +1,10 @@
+{
+    "roleBindings": {
+	"JACK": { "roles": [ "devops" ]},
+	"JOHN": { "roles": [ "developer" ]},
+	"MARY": { "roles": [ "highClearance", "developer" ]},
+	"JANE": { "roles": [ "highClearanceDevops" ]},
+	"BRUNO": { "roles": [ "admin" ]},
+	"RICHARD": { "roles": [ "highClearance"]}
+    }
+}

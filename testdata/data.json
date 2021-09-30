@@ -1,0 +1,22 @@
+{
+    "roles": {
+	"highClearance": { "inClusterSet": "sensitive" },
+	"SRE": { "clusterHasLabel": { "environment": "production"}, "notInClusterSet": "sensitive"},
+	"developer": { "clusterHasLabel": { "environment": "dev"}, "notInClusterSet": "sensitive"},
+	"admin": {}
+    },
+
+    "isA": {
+	"devops": { "roles": [ "SRE", "developer"] },
+	"highClearanceDevops" : { "roles": [ "devops", "highClearance"] }
+    },
+
+    "clusterSets": {
+	"default":  ["*"],
+	"sensitive": [ "cluster0", "cluster1"]
+    },
+
+    "sodRoles": [
+	["developer", "highClearance"]
+    ]
+}
