@@ -20,11 +20,11 @@ make run
 
 ### Complie API with partial evaluation
 ```
-USER=JACK envsubst < query.json | curl -s localhost:8181/v1/compile?pretty -H 'Content-Type: application/json' -d @-
+USER=JACK envsubst < query.json | curl -ks https://localhost:8181/v1/compile?pretty -H 'Content-Type: application/json' -d @-
 ```
 
 ```
-USER=JOHN envsubst < query.json | curl -s localhost:8181/v1/compile?pretty -H 'Content-Type: application/json' -d @-
+USER=JOHN envsubst < query.json | curl -ks https://localhost:8181/v1/compile?pretty -H 'Content-Type: application/json' -d @-
 ```
 
 ### Data API
@@ -40,16 +40,16 @@ USER=JACK CLUSTER=cluster1 KUBECONFIG=$HUB1_CONFIG ./check_cluster.sh
 SOD:
 
 ```
-curl localhost:8181/v1/data/rbac/sod/verify?pretty -H 'Content-Type: application/json'
-curl localhost:8181/v1/data/rbac/sod/has_violation?pretty -H 'Content-Type: application/json'
-curl localhost:8181/v1/data/rbac/sod/violation?pretty -H 'Content-Type: application/json'
+curl -ks https://localhost:8181/v1/data/rbac/sod/verify?pretty -H 'Content-Type: application/json'
+curl -ks https://localhost:8181/v1/data/rbac/sod/has_violation?pretty -H 'Content-Type: application/json'
+curl -ks https://localhost:8181/v1/data/rbac/sod/violation?pretty -H 'Content-Type: application/json'
 ```
 
 Data:
 
 ```
-curl localhost:8181/v1/data/roles/developer?pretty -H 'Content-Type: application/json'
-curl localhost:8181/v1/data/roleBindings/JACK?pretty -H 'Content-Type: application/json'
+curl -ks https://localhost:8181/v1/data/roles/developer?pretty -H 'Content-Type: application/json'
+curl -ks https://localhost:8181/v1/data/roleBindings/JACK?pretty -H 'Content-Type: application/json'
 ```
 
 Update data:
@@ -126,7 +126,7 @@ Execute commands on the container:
 
 ```
 kubectl exec -it $(kubectl get pod -l name=$(basename $(pwd)) -o jsonpath='{.items..metadata.name}' -n open-cluster-management) \
--n open-cluster-management -- curl localhost:8181/v1/data/roles/developer?pretty -H 'Content-Type: application/json'
+-n open-cluster-management -- curl -ks https://localhost:8181/v1/data/roles/developer?pretty -H 'Content-Type: application/json'
 ```
 
 ## References
