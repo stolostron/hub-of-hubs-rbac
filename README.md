@@ -4,6 +4,14 @@
 
 ## Run the server
 
+1. Generate a certificate `tls.crt' and a key `tls.key`. For testing purposes only, you can generate self signed certificates:
+
+```
+mkdir certs
+openssl genrsa -out ./certs/tls.key 2048
+openssl req -new -x509 -key ./certs/tls.key -out ./certs/tls.crt -days 365 -subj '/O=example Inc./CN=example.com'
+```
+
 ```
 make run
 ```
