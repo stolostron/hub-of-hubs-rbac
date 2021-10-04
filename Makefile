@@ -28,7 +28,6 @@ push-images: build-images
 test:
 	@opa test ./*.rego testdata -v
 
-.PHONY: cert
 certs:
 	@echo '*******************************************************************************'
 	@echo Generate the certificates and put them in ./certs directory
