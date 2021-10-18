@@ -20,6 +20,15 @@ spec:
   selector:
     name: hub-of-hubs-rbac
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hub-of-hubs-rbac-ca-bundle
+  annotations:
+    service.beta.openshift.io/inject-cabundle: "true"
+  labels:
+    service: hub-of-hubs-rbac
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -39,11 +48,13 @@ spec:
         - name: ${COMPONENT}
           image: ${REGISTRY}/${COMPONENT}:${IMAGE_TAG}
           imagePullPolicy: Always
+          command: ["./opa", "run", "--server", "./clusters.rego", "./roles.rego", "./sod.rego", "opa_authorization.rego"]
           args:
           - "/data/data.json"
           - "/data/role_bindings.yaml"
           - "--tls-cert-file=/certs/tls.crt"
           - "--tls-private-key-file=/certs/tls.key"
+          - "--tls-ca-cert-file=/hub-of-hubs-nonk8s-api-ca/service-ca.crt"
           volumeMounts:
            - readOnly: true
              mountPath: /data
@@ -51,6 +62,9 @@ spec:
            - readOnly: true
              mountPath: /certs
              name: certs
+           - readOnly: true
+             mountPath: /hub-of-hubs-nonk8s-api-ca
+             name: hub-of-hubs-nonk8s-api-ca
       volumes:
        - name: opa-data
          secret:
@@ -58,15 +72,9 @@ spec:
        - name: certs
          secret:
            secretName: hub-of-hubs-rbac-certs
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: hub-of-hubs-rbac-ca-bundle
-  annotations:
-    service.beta.openshift.io/inject-cabundle: "true"
-  labels:
-    app: hub-of-hubs-rbac
+       - name: hub-of-hubs-nonk8s-api-ca
+         configMap:
+           name: hub-of-hubs-nonk8s-api-ca-bundle
 ---
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
