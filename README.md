@@ -103,7 +103,7 @@ The following environment variables are required for the most tasks below:
 1.  Create a secret for RBAC data
 
     ```
-    kubectl create secret generic opa-data --kubeconfig $TOP_HUB_CONFIG -n open-cluster-management --from-file=testdata/data.json --from-file=role_bindings.yaml --from-literal=opa_authorization.rego="$(ALLOWED_IDENTITY=hub-of-hubs-nonk8s-api.open-cluster-management envsubst < opa_authorization.rego.template)"
+    kubectl create secret generic opa-data --kubeconfig $TOP_HUB_CONFIG -n open-cluster-management --from-file=testdata/data.json --from-file=role_bindings.yaml --from-literal=opa_authorization.rego="$(ALLOWED_IDENTITY=<allowed identity> envsubst < opa_authorization.rego.template)"
     ```
 
 1.  Deploy the component:
