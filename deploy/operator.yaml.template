@@ -55,6 +55,7 @@ spec:
           - "--tls-cert-file=/certs/tls.crt"
           - "--tls-private-key-file=/certs/tls.key"
           - "--tls-ca-cert-file=/hub-of-hubs-nonk8s-api-ca/service-ca.crt"
+          - "--authorization=basic"
           volumeMounts:
            - readOnly: true
              mountPath: /data
