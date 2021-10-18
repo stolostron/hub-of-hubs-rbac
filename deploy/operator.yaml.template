@@ -54,8 +54,6 @@ spec:
           - "/data/role_bindings.yaml"
           - "--tls-cert-file=/certs/tls.crt"
           - "--tls-private-key-file=/certs/tls.key"
-          - "--tls-ca-cert-file=/hub-of-hubs-nonk8s-api-ca/service-ca.crt"
-          - "--authentication=tls"
           - "--authorization=basic"
           volumeMounts:
            - readOnly: true
@@ -64,9 +62,6 @@ spec:
            - readOnly: true
              mountPath: /certs
              name: certs
-           - readOnly: true
-             mountPath: /hub-of-hubs-nonk8s-api-ca
-             name: hub-of-hubs-nonk8s-api-ca
       volumes:
        - name: opa-data
          secret:
@@ -74,9 +69,6 @@ spec:
        - name: certs
          secret:
            secretName: hub-of-hubs-rbac-certs
-       - name: hub-of-hubs-nonk8s-api-ca
-         configMap:
-           name: hub-of-hubs-nonk8s-api-ca-bundle
 ---
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
