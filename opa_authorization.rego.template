@@ -6,4 +6,6 @@ default allow = false
 # Allow GET only
 allow {
     input.method = "GET"
+
+    input.identity = "${ALLOWED_IDENTITY}"
 }

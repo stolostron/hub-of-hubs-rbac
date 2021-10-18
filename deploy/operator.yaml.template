@@ -48,8 +48,8 @@ spec:
         - name: ${COMPONENT}
           image: ${REGISTRY}/${COMPONENT}:${IMAGE_TAG}
           imagePullPolicy: Always
-          command: ["./opa", "run", "--server", "./clusters.rego", "./roles.rego", "./sod.rego", "opa_authorization.rego"]
           args:
+          - "/data/opa_authorization.rego"
           - "/data/data.json"
           - "/data/role_bindings.yaml"
           - "--tls-cert-file=/certs/tls.crt"
