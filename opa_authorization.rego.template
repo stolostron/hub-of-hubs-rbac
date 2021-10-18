@@ -3,9 +3,14 @@ package system.authz
 # Deny access by default.
 default allow = false
 
+client_cns = {
+	"${ALLOWED_IDENTITY}": true
+}
+
 # Allow GET only
 allow {
     input.method = "GET"
 
-    input.identity = "${ALLOWED_IDENTITY}"
+    split(input.identity, "=", ["CN", cn]) # the cert subject is a CN, and
+    client_cns[cn]                         # the name is a known client.
 }
