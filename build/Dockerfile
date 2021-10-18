@@ -20,4 +20,3 @@ RUN microdnf update && \
 
 USER ${USER_UID}
 ENTRYPOINT ["./opa", "run", "--server", "./clusters.rego", "./roles.rego", "./sod.rego"]
-CMD ["--authorization=basic"]
