@@ -93,6 +93,11 @@ docker run -p 8181:8181 <the docker image>
 
 ## Deploy to a Kubernetes cluster
 
+The following environment variables are required for the most tasks below:
+
+* `REGISTRY`, for example `docker.io/vadimeisenbergibm`.
+* `IMAGE_TAG`, for example `v0.1.0`.
+
 1.  Edit role_bindings.yaml and specify your role bindings
 
 1.  Create a secret for RBAC data
