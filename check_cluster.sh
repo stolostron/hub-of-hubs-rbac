@@ -8,4 +8,4 @@ set -o nounset
 
 kubectl get managedcluster "$CLUSTER" -o json |
     jq "{ \"input\": { \"user\": \"$USER\", \"cluster\": . }}" |
-    curl localhost:8181/v1/data/rbac/clusters/allow -H 'Content-Type: application/json' -d @-
+    curl -ks https://localhost:8181/v1/data/rbac/clusters/allow -H 'Content-Type: application/json' -d @-
