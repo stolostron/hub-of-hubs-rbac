@@ -116,7 +116,7 @@ The following environment variables are required for the most tasks below:
 
 1. Network policy allows access only from open-cluster-management namespace
 1. The opa server runs in TLS mode, with certificates generated/rotated by OpenShift
-1. The opa authorization allows only GET methods (POST are allowed only for /v1/compile paths - partial evaluation), so no update of policies/data is possible through REST API
+1. The opa authorization allows only GET methods (POST are allowed only for /v1/compile paths - partial evaluation, and /v1/data/rbac/clusters/allow), so no update of policies/data is possible through REST API
 1. The data of the policies is in a secret
 
 ### Working with Kubernetes deployment
