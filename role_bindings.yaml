@@ -1,4 +1,4 @@
 roleBindings:
-  <some user>:
+  "system:serviceaccount:open-cluster-management:console-chart":
     roles:
-      - devops
+      - admin
