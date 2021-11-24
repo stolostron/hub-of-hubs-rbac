@@ -115,6 +115,8 @@ The following environment variables are required for the most tasks below:
 To update role bindings, edit [role_bindings.yaml](role_bindings.yaml) and add your user
 (the user name that appears in the top right corner, when you login into OpenShift console).
 
+❗Do not delete the existing role bindings for service accounts (used by Hub-of-Hubs components), add your role bindings.
+
 The role definitions appear in [testdata/data.json](testdata/data.json).
 
 Run the following commands:
