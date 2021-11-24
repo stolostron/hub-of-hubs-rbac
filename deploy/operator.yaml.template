@@ -34,7 +34,7 @@ kind: Deployment
 metadata:
   name: ${COMPONENT}
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       name: ${COMPONENT}
