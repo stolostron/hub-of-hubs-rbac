@@ -1,7 +1,7 @@
 {
     "roles": {
 	"highClearance": { "inClusterSet": "sensitive" },
-	"SRE": { "clusterHasLabel": { "environment": "production"}, "notInClusterSet": "sensitive"},
+	"SRE": { "clusterHasLabel": { "environment": "prod"}, "notInClusterSet": "sensitive"},
 	"developer": { "clusterHasLabel": { "environment": "dev"}, "notInClusterSet": "sensitive"},
 	"admin": {}
     },
