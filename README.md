@@ -98,19 +98,32 @@ The following environment variables are required for the most tasks below:
 * `REGISTRY`, for example `docker.io/vadimeisenbergibm`.
 * `IMAGE_TAG`, for example `v0.1.0`.
 
-1.  Edit role_bindings.yaml and specify your role bindings
-
 1.  Create a secret for RBAC data
 
     ```
-    kubectl create secret generic opa-data --kubeconfig $TOP_HUB_CONFIG -n open-cluster-management --from-file=testdata/data.json --from-file=role_bindings.yaml --from-file=opa_authorization.rego
+    kubectl create secret generic opa-data -n open-cluster-management --from-file=data.json --from-file=role_bindings.yaml --from-file=opa_authorization.rego
     ```
 
 1.  Deploy the component:
 
     ```
-    COMPONENT=$(basename $(pwd)) envsubst < deploy/operator.yaml.template | kubectl apply --kubeconfig $TOP_HUB_CONFIG -n open-cluster-management -f -
+    COMPONENT=$(basename $(pwd)) envsubst < deploy/operator.yaml.template | kubectl apply -n open-cluster-management -f -
     ```
+
+## Update role bindings or role definitions
+
+To update role bindings, edit [role_bindings.yaml](role_bindings.yaml) and add your user
+(the user name that appears in the top right corner, when you login into OpenShift console).
+
+The role definitions appear in [testdata/data.json](testdata/data.json).
+
+Run the following commands:
+
+```
+kubectl delete secret opa-data -n open-cluster-management  --ignore-not-found
+kubectl create secret generic opa-data --kubeconfig $TOP_HUB_CONFIG -n open-cluster-management --from-file=testdata/data.json --from-file=role_bindings.yaml --from-file=opa_authorization.rego
+kubectl rollout restart deployment hub-of-hubs-rbac -n open-cluster-management
+```
 
 ### Security measures
 
