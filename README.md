@@ -121,7 +121,7 @@ Run the following commands:
 
 ```
 kubectl delete secret opa-data -n open-cluster-management  --ignore-not-found
-kubectl create secret generic opa-data --kubeconfig $TOP_HUB_CONFIG -n open-cluster-management --from-file=testdata/data.json --from-file=role_bindings.yaml --from-file=opa_authorization.rego
+kubectl create secret generic opa-data -n open-cluster-management --from-file=testdata/data.json --from-file=role_bindings.yaml --from-file=opa_authorization.rego
 kubectl rollout restart deployment hub-of-hubs-rbac -n open-cluster-management
 ```
 
