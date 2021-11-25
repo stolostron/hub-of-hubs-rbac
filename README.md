@@ -139,14 +139,14 @@ kubectl rollout restart deployment hub-of-hubs-rbac -n open-cluster-management
 Show log:
 
 ```
-kubectl logs -l name=$(basename $(pwd)) --kubeconfig $TOP_HUB_CONFIG -n open-cluster-management
+kubectl logs -l name=$(basename $(pwd)) -n open-cluster-management
 ```
 
-Execute commands on the container:
+Execute commands inside the container:
 
 ```
-kubectl exec -it $(kubectl get pod -l name=$(basename $(pwd)) -o jsonpath='{.items..metadata.name}' -n open-cluster-management) \
--n open-cluster-management -- curl -ks https://localhost:8181/v1/data/roles/developer?pretty -H 'Content-Type: application/json'
+kubectl exec -it $(kubectl get pod -l name=$(basename $(pwd)) -o jsonpath='{.items[0].metadata.name}' -n open-cluster-management) \
+-n open-cluster-management -- curl -ks https://localhost:8181/v1/data/rbac/sod/?pretty -H 'Content-Type: application/json'
 ```
 
 ## References
