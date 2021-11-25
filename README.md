@@ -151,6 +151,8 @@ kubectl exec -it $(kubectl get pod -l name=$(basename $(pwd)) -o jsonpath='{.ite
 
 ## References
 
-* https://blog.openpolicyagent.org/write-policy-in-opa-enforce-policy-in-sql-d9d24db93bf4
-* https://github.com/open-policy-agent/contrib/tree/efb4466b7d23ae6356ea8337c3a1e2632e93d7b3/data_filter_elasticsearch
+* OPA and SQL https://blog.openpolicyagent.org/write-policy-in-opa-enforce-policy-in-sql-d9d24db93bf4
+* OPA and SQL example in elastic search https://github.com/open-policy-agent/contrib/tree/efb4466b7d23ae6356ea8337c3a1e2632e93d7b3/data_filter_elasticsearch
 * https://github.com/open-policy-agent/opa/issues/947
+* Explanation regarding using ConfigMaps/Secrets: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#should-i-use-a-configmap-or-a-custom-resource
+* Explanation about Rolling Update: https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/
