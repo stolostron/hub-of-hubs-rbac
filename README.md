@@ -139,7 +139,7 @@ kubectl rollout restart deployment hub-of-hubs-rbac -n open-cluster-management
 Show log:
 
 ```
-kubectl logs -l name=$(basename $(pwd)) --kubeconfig $TOP_HUB_CONFIG -n open-cluster-management
+kubectl logs -l name=$(basename $(pwd)) -n open-cluster-management
 ```
 
 Execute commands inside the container:
