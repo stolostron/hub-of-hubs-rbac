@@ -44,8 +44,14 @@
     kubectl get managedcluster -A
     kubectl get ns cluster0
     ```
+1.  Show the managed clusters on the leaf hub1:
 
-1.  Show the current identity:
+    ```
+    kubectl get managedcluster --kubeconfig $HUB1_CONFIG 
+    kubectl get ns cluster0 --kubeconfig $HUB1_CONFIG 
+    ```
+    
+3.  Show the current identity:
 
     ```
     curl -k https://api.$CLUSTER_URL:6443/apis/user.openshift.io/v1/users/~ -H "Authorization: Bearer $TOKEN"
