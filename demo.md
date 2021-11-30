@@ -62,7 +62,7 @@
 1.  Show the managed clusters in Non-Kubernetes REST API:
 
     ```
-    curl -ks  https://multicloud-console.apps.$CLUSTER_URL/multicloud/hub-of-hubs-nonk8s-api/managedclusters  -H "Authorization: Bearer $TOKEN" |  jq .[].metadata.name
+    curl -ks  https://multicloud-console.apps.$CLUSTER_URL/multicloud/hub-of-hubs-nonk8s-api/managedclusters  -H "Authorization: Bearer $TOKEN" |  jq .[].metadata.name | sort
     ```
 
 1.  Edit `role_bindings.yaml`, change your role to be one of: `developer`, `SRE`, `devops`, `highClearance`,
