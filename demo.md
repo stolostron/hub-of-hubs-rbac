@@ -40,6 +40,7 @@
 1.  Show that there are no managed cluster CRs defined in the Hub-of-Hubs:
 
     ```
+    kubectl config view | grep server
     kubectl get managedcluster -A
     ```
 
