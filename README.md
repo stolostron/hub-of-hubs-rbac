@@ -146,7 +146,7 @@ Execute commands inside the container:
 
 ```
 kubectl exec -it $(kubectl get pod -l name=$(basename $(pwd)) -o jsonpath='{.items[0].metadata.name}' -n open-cluster-management) \
--n open-cluster-management -- curl -ks https://localhost:8181/v1/data/rbac/sod/?pretty -H 'Content-Type: application/json'
+-n open-cluster-management -- curl -ks https://localhost:8181/v1/data/rbac/sod?pretty -H 'Content-Type: application/json'
 ```
 
 ## References
