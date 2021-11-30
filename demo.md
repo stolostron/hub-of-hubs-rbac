@@ -42,6 +42,7 @@
     ```
     kubectl config view | grep server
     kubectl get managedcluster -A
+    kubectl get ns cluster0
     ```
 
 1.  Show the current identity:
