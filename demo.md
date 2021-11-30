@@ -76,10 +76,10 @@
     kubectl rollout restart deployment hub-of-hubs-rbac -n open-cluster-management
     ```
 
-1.  Show that the RBAC pods are recreated:
+1.  Watch the RBAC pods are recreated:
 
     ```
-    kubectl get pod -l name=hub-of-hubs-rbac -n open-cluster-management
+    watch kubectl get pod -l name=hub-of-hubs-rbac -n open-cluster-management
     ```
     
 3.  Check the SOD violation (for `developer` and `highClearance` roles):
