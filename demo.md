@@ -5,7 +5,7 @@
 1.  Show the clusters in the DB
 
     ```
-    select leaf_hub_name, payload->'metadata'->'name' from status.managed_clusters;
+    select leaf_hub_name, payload->'metadata'->'name' as name from status.managed_clusters;
     ```
     
     ```
