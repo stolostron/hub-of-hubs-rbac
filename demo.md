@@ -65,7 +65,13 @@
     curl -ks  https://multicloud-console.apps.$CLUSTER_URL/multicloud/hub-of-hubs-nonk8s-api/managedclusters  -H "Authorization: Bearer $TOKEN" |  jq .[].metadata.name | sort
     ```
 
-1.  Edit `role_bindings.yaml`, change your role to be one of: `developer`, `SRE`, `devops`, `highClearance`,
+1.  Show the SQL query performed by Non-Kubernetes REST API:
+
+    ```
+    kubectl logs -l name=hub-of-hubs-nonk8s-api -n open-cluster-management
+    ```
+    
+3.  Edit `role_bindings.yaml`, change your role to be one of: `developer`, `SRE`, `devops`, `highClearance`,
     `highClearanceDevops`, `admin`.
 
 1.  Redefine the secret with the role bindings and restart the RBAC component:
