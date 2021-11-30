@@ -5,11 +5,11 @@
 1.  Show the clusters in the DB
 
     ```
-    select leaf_hub_name, payload->'metadata'->'name' as name from status.managed_clusters;
+    select leaf_hub_name, payload->'metadata'->'name' as cluster_name from status.managed_clusters ORDER BY cluster_name;
     ```
     
     ```
-    select payload -> 'metadata' ->>'name' as name, payload -> 'metadata' -> 'labels' -> 'environment' as environment from status.managed_clusters ORDER BY payload -> 'metadata' ->>'name';
+    select payload -> 'metadata' ->>'name' as cluster_name, payload -> 'metadata' -> 'labels' -> 'environment' as environment from status.managed_clusters ORDER BY cluster_name;
     ```
 
     Output:
