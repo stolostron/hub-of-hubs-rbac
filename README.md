@@ -1,6 +1,6 @@
 # hub-of-hubs-rbac
 
-[Open Policy Agent](https://www.openpolicyagent.org)-based RBAC for [Hub-of-Hubs](https://github.com/open-cluster-management/hub-of-hubs).
+[Open Policy Agent](https://www.openpolicyagent.org)-based RBAC for [Hub-of-Hubs](https://github.com/stolostron/hub-of-hubs).
 
 ## Run the server
 
