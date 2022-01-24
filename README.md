@@ -1,5 +1,7 @@
 # hub-of-hubs-rbac
 
+[![License](https://img.shields.io/github/license/stolostron/hub-of-hubs-rbac)](/LICENSE)
+
 [Open Policy Agent](https://www.openpolicyagent.org)-based RBAC for [Hub-of-Hubs](https://github.com/stolostron/hub-of-hubs).
 
 ## Run the server
