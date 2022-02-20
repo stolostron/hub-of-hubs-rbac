@@ -7,9 +7,9 @@
     ```
     select leaf_hub_name, payload->'metadata'->'name' as cluster_name from status.managed_clusters ORDER BY cluster_name;
     ```
-    
+
     ```
-    select payload -> 'metadata' ->>'name' as cluster_name, payload -> 'metadata' -> 'labels' -> 'environment' as environment from status.managed_clusters ORDER BY cluster_name;
+    select payload -> 'metadata' ->>'name' as cluster_name, payload -> 'metadata' -> 'labels' -> 'env' as env from status.managed_clusters ORDER BY cluster_name;
     ```
 
     Output:
@@ -17,28 +17,28 @@
     ```
     labels
     ---------------------------------------------------------------------
-    {"name": "cluster0", "vendor": "Kind", "environment": "prod"}
-    {"name": "cluster1", "vendor": "Kind", "environment": "prod"}
-    {"name": "cluster2", "vendor": "Kind", "environment": "prod"}
-    {"name": "cluster3", "vendor": "Kind", "environment": "dev"}
+    {"name": "cluster0", "vendor": "Kind", "env": "production"}
+    {"name": "cluster1", "vendor": "Kind", "env": "production"}
+    {"name": "cluster2", "vendor": "Kind", "env": "production"}
+    {"name": "cluster3", "vendor": "Kind", "env": "dev"}
     {"name": "cluster4", "vendor": "Kind"}
-    {"name": "cluster5", "vendor": "Kind", "environment": "prod"}
-    {"name": "cluster6", "vendor": "Kind", "environment": "prod"}
+    {"name": "cluster5", "vendor": "Kind", "env": "production"}
+    {"name": "cluster6", "vendor": "Kind", "env": "production"}
     {"name": "cluster7", "vendor": "Kind"}
     {"name": "cluster8", "vendor": "Kind"}
-    {"name": "cluster9", "vendor": "Kind", "environment": "dev"}
+    {"name": "cluster9", "vendor": "Kind", "env": "dev"}
     ```
 
 1.  Show some SQL queries on the table:
 
     ```
     SELECT payload -> 'metadata' ->> 'name' FROM status.managed_clusters WHERE
-    payload -> 'metadata' -> 'labels' ->> 'environment' = 'dev';
+    payload -> 'metadata' -> 'labels' ->> 'env' = 'dev';
     ```
 
     ```
     SELECT payload -> 'metadata' ->> 'name' FROM status.managed_clusters WHERE
-    payload -> 'metadata' -> 'labels' ->> 'environment' = 'prod';
+    payload -> 'metadata' -> 'labels' ->> 'env' = 'production';
     ```
 
 1.  Show that there are no managed cluster CRs defined in the Hub-of-Hubs:
@@ -51,10 +51,10 @@
 1.  Show the managed clusters on the leaf hub1:
 
     ```
-    kubectl get managedcluster --kubeconfig $HUB1_CONFIG 
-    kubectl get ns cluster0 --kubeconfig $HUB1_CONFIG 
+    kubectl get managedcluster --kubeconfig $HUB1_CONFIG
+    kubectl get ns cluster0 --kubeconfig $HUB1_CONFIG
     ```
-    
+
 3.  Show the current identity:
 
     ```
@@ -74,7 +74,7 @@
     ```
     kubectl logs -l name=hub-of-hubs-nonk8s-api -n open-cluster-management
     ```
-    
+
 3.  Edit `role_bindings.yaml`, change your role to be one of: `developer`, `SRE`, `devops`, `highClearance`,
     `highClearanceDevops`, `admin`.
 
@@ -91,7 +91,7 @@
     ```
     watch kubectl get pod -l name=hub-of-hubs-rbac -n open-cluster-management
     ```
-    
+
 3.  Check the SOD violation (for `developer` and `highClearance` roles):
 
     ```
