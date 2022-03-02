@@ -155,6 +155,10 @@ kubectl exec -it $(kubectl get pod -l name=$(basename $(pwd)) -o jsonpath='{.ite
 -n open-cluster-management -- curl -ks https://localhost:8181/v1/data/rbac/sod?pretty -H 'Content-Type: application/json'
 ```
 
+```
+kubectl exec -it $(kubectl get pod -l name=$(basename $(pwd)) -o jsonpath='{.items[0].metadata.name}' -n open-cluster-management) -n open-cluster-management --  curl -ks https://localhost:8181/v1/compile?pretty -H 'Content-Type: application/json' -d '{"query":"data.rbac.clusters.allow == true","input":{"user":"VADIME"},"unknowns":["input.cluster"]}'
+```
+
 ## References
 
 * OPA and SQL https://blog.openpolicyagent.org/write-policy-in-opa-enforce-policy-in-sql-d9d24db93bf4
