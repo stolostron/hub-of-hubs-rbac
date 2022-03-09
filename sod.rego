@@ -13,6 +13,7 @@ any_violation {
 }
 
 has_violation[user] {
+   some user
    data.roleBindings[user]
    some role1, role2
    data.roles[role1]
@@ -22,6 +23,7 @@ has_violation[user] {
 
 # Find users violating SOD
 violation[[user, role1, role2]] {
+  some user
   userRoles := data.roleBindings[user].roles
 
 # grab one role (including inherited) for a user
