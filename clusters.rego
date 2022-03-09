@@ -6,10 +6,10 @@ allow {
       user := input.user
 #     not data.rbac.sod.has_violation[user]
       userRoles := data.roleBindings[user].roles
-      some role
-      data.roles[role]
-      data.rbac.roles.inherited_role[[userRoles[_], role]]
-      role_allowed[role]
+      some roleId
+      data.roles[roleId]
+      data.rbac.roles.inherited_role[[userRoles[_], roleId]]
+      role_allowed[roleId]
 }
 
 
