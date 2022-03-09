@@ -14,6 +14,8 @@ allow {
 
 
 role_allowed[roleId] {
+      some roleId
+
       role := data.roles[roleId]
 
       label := object.get(role, "clusterHasLabel", "*")
@@ -31,6 +33,7 @@ role_allowed[roleId] {
 labels_match["*"]
 
 labels_match[label] {
+     some key
      val := input.cluster.metadata.labels[key]
      label := data.roles[_].clusterHasLabel
      label[key] == val
