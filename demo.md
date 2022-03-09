@@ -2,6 +2,12 @@
 
 1.  Define `TOKEN` and `CLUSTER_URL` environment variables
 
+1.  Connect to the database. If it runs inside the hub cluster, run:
+
+    ```
+    kubectl exec -it $(kubectl get pods -n hoh-postgres -l postgres-operator.crunchydata.com/role=master -o jsonpath='{.items..metadata.name}') -n hoh-postgres -c database -- psql -d hoh
+    ```
+    
 1.  Show the clusters in the DB
 
     ```
