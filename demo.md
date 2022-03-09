@@ -69,6 +69,12 @@
     curl -ks  https://multicloud-console.apps.$CLUSTER_URL/multicloud/hub-of-hubs-nonk8s-api/managedclusters  -H "Authorization: Bearer $TOKEN" |  jq .[].metadata.name | sort
     ```
 
+1.  Show the partial evaluation returned by the RBAC component:
+
+    ```
+    kubectl exec -it $(kubectl get pod -l name=$(basename $(pwd)) -o jsonpath='{.items[0].metadata.name}' -n open-cluster-management) -n open-cluster-management --  curl -ks https://localhost:8181/v1/compile?pretty -H 'Content-Type: application/json' -d '{"query":"data.rbac.clusters.allow == true","input":{"user":"VADIME"},"unknowns":["input.cluster"]}'
+    ```
+
 1.  Show the SQL query performed by Non-Kubernetes REST API:
 
     ```
