@@ -57,7 +57,7 @@ curl -ks https://localhost:8181/v1/data/roleBindings/JACK?pretty -H 'Content-Typ
 Update data:
 
 ```
-ROLE=SRE envsubst < patch_role_binding.json | curl -X PATCH localhost:8181/v1/data/roleBindings/JACK -H 'Content-Type: application/json' -d @-
+ROLE=SRE envsubst < patch_role_binding.json | curl -k -X PATCH https://localhost:8181/v1/data/roleBindings/JACK -H 'Content-Type: application/json'  -d @- 
 ```
 
 ## Evaluate individual rules
