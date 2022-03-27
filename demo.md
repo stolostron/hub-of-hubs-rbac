@@ -74,6 +74,11 @@
     ```
     curl -ks  https://multicloud-console.apps.$CLUSTER_URL/multicloud/hub-of-hubs-nonk8s-api/managedclusters  -H "Authorization: Bearer $TOKEN" |  jq .[].metadata.name | sort
     ```
+1.  Show the managed clusters in Kubernetes REST API:
+
+    ```
+    curl -ks https://api.$CLUSTER_URL:6443/apis/cluster.open-cluster-management.io/v1/managedclusters -H "Authorization: Bearer $TOKEN" | jq .items[].metadata.name
+    ```
 
 1.  Show the partial evaluation returned by the RBAC component:
 
